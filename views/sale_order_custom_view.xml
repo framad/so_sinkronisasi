@@ -1,0 +1,45 @@
+<!-- views/sale_order_custom_view.xml -->
+
+<odoo>
+    <record id="view_sale_order_custom_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+           
+        </field>
+    </record>
+
+    <record id="view_sale_order_custom_tree" model="ir.ui.view">
+        <field name="name">sale.order.custom.tree</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <tree>
+            <field name="partner_id"/>
+                <!-- Specify tree view fields if needed -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sale_order_custom_kanban" model="ir.ui.view">
+        <field name="name">sale.order.custom.kanban</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <!-- Specify kanban view fields if needed -->
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="action_sale_order_custom" model="ir.actions.act_window">
+        <field name="name">Custom Sales Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="so_sinkronisasi.view_sale_order_custom_form"/>
+    </record>
+
+    <menuitem id="menu_sale_order_custom" name="Custom Sales Orders" parent="sale.sale_order_menu"
+              action="so_sinkronisasi.action_sale_order_custom"
+              sequence="20"/>
+</odoo>

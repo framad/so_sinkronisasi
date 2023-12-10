@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+           <xpath expr="//notebook" position="inside">
+                <page string="Rekap SOL">
+                    <field name="rekap_so_ids">
+                        <tree editable="bottom" delete='1'>
+                            <field name="id_produk" string="ID Product"/>
+                            <field name="product" string="Nama Product"/>
+                            <field name="quantity" string="Data Quantity"/>
+                            <field name="transaction_date" string="Tanggal"/>
+                            <field name="total_product" string="Total"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                <button string="Proses Sinkronisasi Data" type="object" name="rekap_sale_order" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_inherit_action" model="ir.actions.act_window">
+            <field name="name">Orders Clone</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+
+            <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
+
+        </record>
+
+        <menuitem id="order_clone" name="Orders Clone" sequence='15' parent="sale.sale_order_menu" action="view_sale_order_inherit_action"/>
+    
+</odoo>

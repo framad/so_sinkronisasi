@@ -1,0 +1,5 @@
+<odoo>
+    <data>
+        <menuitem id="sinkronisasi_root" name="Sinkron" sequence="0"/>
+    </data>
+</odoo>
